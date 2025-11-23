@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- SEO : autoriser Google -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Anti-cache (optionnel, tu peux retirer plus tard) -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Élan pour tous — Formations numériques accessibles, inclusion, accompagnement handicap, tests de compétences et outils adaptés à Saumur et en distanciel.">
+
+  <title>Élan pour tous — Formations & Inclusion</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/ima/logo.png" type="image/png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rgaa-accessible.css">
+  <link rel="stylesheet" href="assets/css/tts.min.css">
+  <link rel="stylesheet" href="assets/css/chat.css">
+
+  <!-- Données locales (SEO + géo + institution) -->
+  <meta name="author" content="Patrick Billy – Élan pour tous">
+  <meta name="geo.region" content="FR-PDL">
+  <meta name="geo.placename" content="Saumur">
+  <meta name="geo.position" content="47.259;-0.078">
+  <meta name="ICBM" content="47.259, -0.078">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Élan pour tous — Formations & Inclusion numérique à Saumur">
+  <meta property="og:description" content="Accompagnement numérique accessible, tests de compétences, inclusion, ateliers et outils adaptés.">
+  <meta property="og:image" content="assets/ima/logo.png">
+  <meta property="og:url" content="https://elanpourtous.github.io/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Élan pour tous — Inclusion & numérique">
+  <meta name="twitter:description" content="Formations, tests de compétences, inclusion et outils adaptés.">
+  <meta name="twitter:image" content="assets/ima/logo.png">
+</head>
+
+<body>
+
+  <!-- Watermark invisible anti-plagiat -->
+  <p style="font-size:0;opacity:0;height:0;overflow:hidden;">
+    © Élan pour tous – Patrick Billy. Reproduction interdite sans autorisation.
+  </p>
+
+  <!-- Lien d’évitement -->
+  <a href="#contenu" class="skip-link">Aller au contenu</a>
+
+  <!-- Header -->
+  <div id="header-placeholder" role="banner"></div>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main id="contenu" class="container hero" role="main" tabindex="-1">
+    <h1>Élan pour tous</h1>
+    <p class="lead">Formations, inclusion numérique, accompagnement & outils d’appui — accessibles et concrets.</p>
+
+    <section>
+      <h2>Nos services</h2>
+      <ul>
+        <li>Formations numériques accessibles</li>
+        <li>Tests de compétences adaptés</li>
+        <li>Accompagnement handicap & outils d’appui</li>
+        <li>Ateliers pratiques (FALC, documents accessibles, TTS, dictée vocale)</li>
+      </ul>
+      <p><a href="services.html" class="btn">Voir les services</a></p>
+    </section>
+
+    <section>
+      <h2>Formations</h2>
+      <ul>
+        <li>Premiers pas numériques</li>
+        <li>Bureautique accessible</li>
+        <li>Communication & organisation</li>
+        <li>Accessibilité numérique & FALC</li>
+      </ul>
+      <p><a href="formations.html" class="btn btn-primary">Voir les formations</a></p>
+    </section>
+
+    <section>
+      <h2>Inclusion & accessibilité</h2>
+      <p>Site conforme RGAA 4.1 (niveau AA) — navigation clavier, contrastes, alternatives textuelles, TTS intégré.</p>
+      <p><a href="rgaa.html" class="btn">Accessibilité du site</a></p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-placeholder" role="contentinfo"></div>
+
+  <!-- Chatbot -->
+  <div id="chat-placeholder"></div>
+
+  <script>
+    (function(){
+      async function inc(id,url){
+        const el=document.getElementById(id);
+        if(!el) return;
+        const r=await fetch(url,{cache:"no-store"});
+        if(!r.ok) throw new Error(url+" introuvable");
+        el.innerHTML=await r.text();
+      }
+
+      // Skip link
+      document.querySelector('.skip-link')?.addEventListener('click',()=>{
+        const m=document.getElementById('contenu');
+        if(m) requestAnimationFrame(()=>m.focus());
+      });
+
+      // Injection header + footer + scripts + chatbot
+      Promise.all([
+        inc("header-placeholder","assets/header.html"),
+        inc("footer-placeholder","assets/footer.html")
+      ]).then(async()=>{
+
+        // Scripts globaux
+        ["assets/js/include.js","assets/js/tts.min.js"].forEach(src=>{
+          if(!document.querySelector(`script[src="${src}"]`)){
+            const s=document.createElement("script");
+            s.src=src; s.defer=true;
+            document.body.appendChild(s);
+          }
+        });
+
+        // Chatbot HTML
+        await inc("chat-placeholder","assets/chat.html");
+
+        // Chatbot JS
+        if(!document.querySelector('script[src="assets/js/chat.js"]')){
+          const s=document.createElement("script");
+          s.src="assets/js/chat.js"; s.defer=true;
+          document.body.appendChild(s);
+        }
+
+        if(window.initElanChat) window.initElanChat();
+      });
+    })();
+  </script>
+
+  <!-- Anti-copie -->
+  <script>
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("selectstart", e => e.preventDefault());
+    ["copy","cut","paste"].forEach(evt=>{
+      document.addEventListener(evt, e => e.preventDefault());
+    });
+    document.addEventListener("dragstart", e => e.preventDefault());
+    document.addEventListener("drop", e => e.preventDefault());
+  </script>
+
+</body>
+</html>
