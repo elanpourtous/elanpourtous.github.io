@@ -1,0 +1,262 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- 🔒 ANTI-ASPI / ANTI-INDEXATION -->
+  <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex, noarchive">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact — Élan pour tous : demande d’information, inscription, devis, accessibilité.">
+  <meta name="theme-color" content="#0b8457">
+  <title>Élan pour tous — Contact</title>
+
+  <link rel="icon" href="assets/ima/logo.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rgaa-accessible.css">
+  <link rel="stylesheet" href="assets/css/tts.min.css">
+  <link rel="stylesheet" href="assets/css/chat.css">
+</head>
+<body>
+
+  <!-- 🔒 Watermark invisible anti-plagiat -->
+  <p style="font-size:0; height:0; overflow:hidden; opacity:0;">
+    Élan pour tous © Patrick Billy — Ce contenu est protégé. Ne pas reproduire.
+  </p>
+
+  <a href="#contenu" class="skip-link">Aller directement au contenu</a>
+  <div id="header-placeholder" role="banner" aria-label="En-tête"></div>
+
+  <main id="contenu" class="container hero" role="main" tabindex="-1" aria-labelledby="title">
+    <h1 id="title">Contact</h1>
+    <p class="lead">Une question, un devis, une inscription ? Nous vous répondons rapidement.</p>
+
+    <p class="form-status" role="status" aria-live="polite" hidden></p>
+
+    <!-- ⚠ Remplace VOTRE_ID_FORM par ton ID Formspree -->
+    <form id="contact-form"
+          class="contact-form"
+          action="https://formspree.io/f/VOTRE_ID_FORM"
+          method="POST"
+          aria-label="Formulaire de contact"
+          novalidate>
+      <!-- Honeypot -->
+      <div class="visually-hidden" aria-hidden="true">
+        <label for="company">Société</label>
+        <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+      </div>
+
+      <input type="hidden" name="_subject"  value="Nouveau message – Élan pour tous">
+      <input type="hidden" name="_language" value="fr">
+
+      <label for="name">Nom <span class="badge-req" aria-hidden="true">*</span></label>
+      <input type="text" id="name" name="name" required aria-required="true" autocomplete="name" aria-describedby="hint-name">
+      <p id="hint-name" class="field-hint">Indiquez vos nom et prénom.</p>
+
+      <label for="email">Email <span class="badge-req" aria-hidden="true">*</span></label>
+      <input type="email" id="email" name="email" required aria-required="true" autocomplete="email" aria-describedby="hint-email">
+      <p id="hint-email" class="field-hint">Nous ne partagerons pas votre adresse.</p>
+
+      <label for="subject">Sujet <span class="badge-req" aria-hidden="true">*</span></label>
+      <input type="text" id="subject" name="subject" required aria-required="true" aria-describedby="hint-subj">
+      <p id="hint-subj" class="field-hint">Ex. : Demandeur d’emploi — test de compétences</p>
+
+      <label for="message">Message <span class="badge-req" aria-hidden="true">*</span></label>
+      <textarea id="message" name="message" rows="6" required aria-required="true" aria-describedby="hint-msg"></textarea>
+      <p id="hint-msg" class="field-hint">Précisez votre demande (contexte, besoins, dates…)</p>
+
+      <button type="submit" class="btn">Envoyer</button>
+    </form>
+
+    <section class="contact-info" aria-labelledby="infos">
+      <h2 id="infos">Nos coordonnées</h2>
+      <p><strong>Email :</strong> <a href="mailto:elanpourtous49@gmail.com">elanpourtous49@gmail.com</a></p>
+      <p><strong>Téléphone :</strong> <a href="tel:+33783336757">07 83 33 67 57</a></p>
+      <p><strong>Adresse :</strong> 18 rue des Menhirs — 49400 BAGNEUX — France</p>
+    </section>
+  </main>
+
+  <div id="footer-placeholder" role="contentinfo" aria-label="Pied de page"></div>
+
+  <!-- 💬 Widget de chat Tom Élan -->
+  <div class="chat-widget" aria-live="polite">
+    <button class="chat-toggle"
+            type="button"
+            id="chat-toggle"
+            aria-expanded="false"
+            aria-controls="chat-panel">
+      <span class="chat-toggle-avatar">
+        <img src="assets/ima/tom_avatar.png" alt="Portrait de Tom Élan">
+      </span>
+      <span class="chat-toggle-text">
+        <strong>Tom Élan</strong><br>
+        <span style="font-size: 0.8em;">Besoin d’un coup de pouce&nbsp;?</span>
+      </span>
+    </button>
+
+    <section class="chat-panel"
+             id="chat-panel"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="chat-title"
+             hidden>
+      <header class="chat-header">
+        <div class="chat-header-main">
+          <img src="assets/ima/tom_avatar.png"
+               alt=""
+               class="chat-header-avatar">
+          <div>
+            <div class="chat-header-title" id="chat-title">Tom Élan</div>
+            <div class="chat-header-status">Assistant personnel</div>
+          </div>
+        </div>
+        <button type="button"
+                class="chat-header-close"
+                id="chat-close"
+                aria-label="Fermer le chat">
+          ×
+        </button>
+      </header>
+
+      <div class="chat-body">
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-message chat-message--bot">
+            Bonjour, je suis Tom. Dis-moi ce que tu veux faire et on s’y met.
+          </div>
+        </div>
+
+        <form class="chat-input" id="chat-form">
+          <label for="chat-input-text" class="sr-only">Votre message</label>
+          <textarea id="chat-input-text"
+                    rows="1"
+                    placeholder="Écrire un message…"
+                    required></textarea>
+          <button type="submit" class="chat-send-btn" id="chat-send-btn">
+            Envoyer
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function(){
+      async function inc(id, url){
+        const host=document.getElementById(id);
+        if(!host) return;
+        const r=await fetch(url,{cache:'no-store'});
+        if(!r.ok) throw new Error(url+' introuvable');
+        host.innerHTML=await r.text();
+      }
+
+      document.querySelector('.skip-link')?.addEventListener('click',()=>{
+        const m=document.getElementById('contenu');
+        if(m) requestAnimationFrame(()=>m.focus());
+      });
+
+      // Header + footer puis scripts globaux
+      Promise.all([
+        inc('header-placeholder','assets/header.html'),
+        inc('footer-placeholder','assets/footer.html')
+      ]).then(()=>{
+        ['assets/js/include.js','assets/js/tts.min.js'].forEach(src=>{
+          if(!document.querySelector(`script[src="${src}"]`)){
+            const s=document.createElement('script');
+            s.src=src; s.defer=true;
+            document.body.appendChild(s);
+          }
+        });
+      }).catch(console.error);
+
+      // Pré-remplissage (depuis orientations.html)
+      (function prefill(){
+        try{
+          const s = sessionStorage.getItem('prefill_subject');
+          const n = sessionStorage.getItem('prefill_note');
+          if(s) document.getElementById('subject').value = s;
+          if(n){
+            const m=document.getElementById('message');
+            if(m && !m.value) m.value = 'Besoin : ' + n;
+          }
+        }catch(_){}
+      })();
+
+      // Envoi AJAX minimal (Formspree)
+      document.addEventListener('DOMContentLoaded', function(){
+        const form=document.getElementById('contact-form');
+        const status=document.querySelector('.form-status');
+        if(!form || !status) return;
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          const data=new FormData(form);
+          if((data.get('company')||'').trim()!=='') return; // honeypot
+          status.hidden=false;
+          status.textContent='Envoi en cours…';
+          try{
+            const res=await fetch(form.action,{
+              method:'POST',
+              body:data,
+              headers:{'Accept':'application/json'}
+            });
+            if(res.ok){
+              status.textContent='Votre message a bien été envoyé. Merci !';
+              form.reset();
+            } else {
+              status.textContent='Un souci est survenu. Réessayez ou écrivez à elanpourtous49@gmail.com';
+            }
+          }catch{
+            status.textContent='Connexion impossible. Vérifiez votre réseau et réessayez.';
+          }
+        });
+      });
+    })();
+  </script>
+
+  <!-- JS du chat Tom -->
+  <script src="assets/js/chat.js" defer></script>
+
+  <!-- 🔒 SCRIPT ANTI-COPIE / ANTI-ASPI -->
+  <script>
+    // Désactivation du clic droit
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Désactivation de la sélection
+    document.addEventListener("selectstart", e => e.preventDefault());
+
+    // Copie / couper / coller bloqués (version accessible, sans alert)
+    document.addEventListener("copy", e => {
+      e.preventDefault();
+      console.warn("Tentative de copie bloquée.");
+    });
+    document.addEventListener("cut", e => e.preventDefault());
+    document.addEventListener("paste", e => e.preventDefault());
+
+    // Blocage drag & drop
+    document.addEventListener("dragstart", e => e.preventDefault());
+    document.addEventListener("drop", e => e.preventDefault());
+
+    // WebDriver (robots headless)
+    if (navigator.webdriver) {
+      document.body.innerHTML = "";
+    }
+
+    // User-agent suspects
+    const ua = navigator.userAgent.toLowerCase();
+    const badUA = ["python","curl","wget","scrapy","bot","spider","crawl","httpclient"];
+    if (badUA.some(sig => ua.includes(sig))) {
+      document.body.innerHTML = "";
+    }
+
+    // Anti-iframe (protection de l’intégrité du site)
+    if (window.top !== window.self) {
+      document.body.innerHTML = "";
+    }
+  </script>
+
+</body>
+</html>
+

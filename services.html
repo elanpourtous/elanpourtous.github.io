@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- 🔒 Anti-indexation / anti-cache -->
+  <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex, noarchive">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Services : accompagnement à l’accessibilité, conseil, ateliers pratiques, support outillage et suivi en situation de handicap.">
+  <meta name="theme-color" content="#0b8457">
+  <title>Élan pour tous — Services</title>
+
+  <link rel="icon" href="assets/ima/logo.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rgaa-accessible.css">
+  <link rel="stylesheet" href="assets/css/tts.min.css">
+  <!-- Styles du chatbot -->
+  <link rel="stylesheet" href="assets/css/chat.css">
+</head>
+<body>
+  <!-- 🔒 Watermark invisible anti-plagiat -->
+  <p style="font-size:0;height:0;overflow:hidden;opacity:0;">
+    Page Services © Élan pour tous — Patrick Billy 2025. Contenu protégé, reproduction interdite sans accord.
+  </p>
+
+  <a href="#contenu" class="skip-link">Aller directement au contenu</a>
+
+  <!-- Header injecté -->
+  <div id="header-placeholder" role="banner" aria-label="En-tête"></div>
+
+  <main id="contenu" class="container hero" role="main" tabindex="-1" aria-labelledby="title">
+    <h1 id="title">Services</h1>
+    <p class="lead">Des interventions concrètes, ajustées à vos usages et vos contraintes.</p>
+
+    <section aria-labelledby="accomp">
+      <h2 id="accomp">Accompagnement &amp; conseil</h2>
+      <ul>
+        <li>Diagnostic bref &amp; recommandations actionnables</li>
+        <li>Paramétrage d’outils d’appui (lecteur d’écran, TTS, zoom, dictée)</li>
+        <li>Co-construction avec les référents handicap / RH</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="ateliers">
+      <h2 id="ateliers">Ateliers pratiques</h2>
+      <ul>
+        <li>Accessibilité numérique appliquée (documents, mails, sites)</li>
+        <li>Communication claire &amp; FALC</li>
+        <li>Organisation simple (agenda, rappels, méthodes)</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="suivi">
+      <h2 id="suivi">Suivi utile</h2>
+      <p>Un point court planifié pour consolider les acquis, ajuster les réglages, lever les blocages.</p>
+      <p><a href="contact.html" class="btn">Nous décrire votre besoin</a></p>
+    </section>
+  </main>
+
+  <!-- Footer injecté -->
+  <div id="footer-placeholder" role="contentinfo" aria-label="Pied de page"></div>
+
+  <!-- Placeholder du chatbot -->
+  <div id="chat-placeholder"></div>
+
+  <script>
+    (function(){
+      async function inc(id, url){
+        const host = document.getElementById(id);
+        if(!host) return;
+        const r = await fetch(url,{cache:'no-store'});
+        if(!r.ok) throw new Error(url+' introuvable');
+        host.innerHTML = await r.text();
+      }
+
+      // Skip-link focus
+      document.querySelector('.skip-link')?.addEventListener('click',()=>{
+        const m=document.getElementById('contenu');
+        if(m) requestAnimationFrame(()=>m.focus());
+      });
+
+      // Inject header + footer
+      Promise.all([
+        inc('header-placeholder','assets/header.html'),
+        inc('footer-placeholder','assets/footer.html')
+      ]).then(async ()=>{
+
+        // Inject JS global sans duplication
+        ['assets/js/include.js','assets/js/tts.min.js'].forEach(src=>{
+          if(!document.querySelector(`script[src="${src}"]`)){
+            const s=document.createElement('script');
+            s.src=src;
+            s.defer=true;
+            document.body.appendChild(s);
+          }
+        });
+
+        // Inject chatbot HTML
+        await inc('chat-placeholder','assets/chat.html');
+
+        // Inject chatbot JS une seule fois
+        if(!document.querySelector('script[src="assets/js/chat.js"]')){
+          const s=document.createElement('script');
+          s.src='assets/js/chat.js';
+          s.defer=true;
+          document.body.appendChild(s);
+        }
+
+        // Initialise le widget si disponible
+        if(window.initElanChat){
+          window.initElanChat();
+        }
+      }).catch(console.error);
+
+    })();
+  </script>
+
+  <!-- 🔒 Anti-copie / anti-aspi côté front -->
+  <script>
+    // Clic droit
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Sélection
+    document.addEventListener("selectstart", e => e.preventDefault());
+
+    // Copier / couper / coller
+    ["copy","cut","paste"].forEach(evt => {
+      document.addEventListener(evt, e => e.preventDefault());
+    });
+
+    // Drag & drop
+    document.addEventListener("dragstart", e => e.preventDefault());
+    document.addEventListener("drop", e => e.preventDefault());
+
+    // Anti-iframe
+    if (window.top !== window.self) {
+      document.body.innerHTML = "";
+    }
+
+    // Anti WebDriver (scripts type Selenium)
+    if (navigator.webdriver) {
+      document.body.innerHTML = "";
+    }
+
+    // User-agents suspects (aspirateurs simples)
+    const ua = navigator.userAgent.toLowerCase();
+    const badUA = ["curl","wget","httpclient","python","scrapy","bot","spider","crawl"];
+    if (badUA.some(x => ua.includes(x))) {
+      document.body.innerHTML = "";
+    }
+  </script>
+</body>
+</html>

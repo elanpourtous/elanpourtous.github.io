@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- 🔒 ANTI-ASPI / ANTI-INDEXATION -->
+  <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex, noarchive">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="À propos — Élan pour tous : mission, valeurs et approche pédagogique inclusive à Saumur et en distanciel.">
+  <meta name="theme-color" content="#0b8457">
+  <title>Élan pour tous — À propos</title>
+
+  <link rel="icon" href="assets/ima/logo.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rgaa-accessible.css">
+  <link rel="stylesheet" href="assets/css/tts.min.css">
+  <link rel="stylesheet" href="assets/css/chat.css">
+</head>
+
+<body>
+
+  <!-- 🔒 Watermark invisible (preuve anti-plagiat) -->
+  <p style="font-size:0; height:0; overflow:hidden; opacity:0;">
+    Élan pour tous © Patrick Billy — Ce contenu est protégé. Ne pas reproduire.
+  </p>
+
+  <a href="#contenu" class="skip-link">Aller directement au contenu</a>
+
+  <div id="header-placeholder" role="banner" aria-label="En-tête"></div>
+
+  <main id="contenu" class="container hero" role="main" tabindex="-1" aria-labelledby="title">
+    <h1 id="title">À propos</h1>
+    <p class="lead">Rendre l’apprentissage possible, agréable et utile — pour tout le monde.</p>
+
+    <section aria-labelledby="mission">
+      <h2 id="mission">Notre mission</h2>
+      <p>Accompagner chaque personne vers plus d’autonomie numérique et professionnelle, sans jargon, sans jugement, avec des méthodes concrètes et inclusives.</p>
+    </section>
+
+    <section aria-labelledby="valeurs">
+      <h2 id="valeurs">Nos valeurs</h2>
+      <ul>
+        <li><strong>Inclusion</strong> — On s’adapte aux besoins et aux contextes.</li>
+        <li><strong>Clarté</strong> — On explique, on montre, on pratique.</li>
+        <li><strong>Respect du rythme</strong> — Petites victoires, grands effets.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="approche">
+      <h2 id="approche">Notre approche</h2>
+      <p>Diagnostic bref, objectifs réalistes, outils adaptés (lecteurs d’écran, dictée vocale, FALC). On avance par étapes, avec supports accessibles et un suivi utile.</p>
+      <p><a href="contact.html" class="btn">Nous poser une question</a></p>
+    </section>
+
+    <aside class="info-note" role="note">
+      <h3>Bon à savoir</h3>
+      <p>Nous intervenons à Saumur et alentours, et en distanciel selon les besoins.</p>
+    </aside>
+  </main>
+
+  <div id="footer-placeholder" role="contentinfo" aria-label="Pied de page"></div>
+
+  <!-- 💬 CHATBOT TOM ELAN -->
+  <div class="chat-widget" aria-live="polite">
+    <button class="chat-toggle"
+            type="button"
+            id="chat-toggle"
+            aria-expanded="false"
+            aria-controls="chat-panel">
+      <span class="chat-toggle-avatar">
+        <img src="assets/ima/tom_avatar.png" alt="Portrait de Tom Élan">
+      </span>
+      <span class="chat-toggle-text">
+        <strong>Tom Élan</strong><br>
+        <span style="font-size: 0.8em;">Besoin d’un coup de pouce&nbsp;?</span>
+      </span>
+    </button>
+
+    <section class="chat-panel"
+             id="chat-panel"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="chat-title"
+             hidden>
+      <header class="chat-header">
+        <div class="chat-header-main">
+          <img src="assets/ima/tom_avatar.png" alt="" class="chat-header-avatar">
+          <div>
+            <div class="chat-header-title" id="chat-title">Tom Élan</div>
+            <div class="chat-header-status">Assistant personnel</div>
+          </div>
+        </div>
+        <button type="button"
+                class="chat-header-close"
+                id="chat-close"
+                aria-label="Fermer le chat">
+          ×
+        </button>
+      </header>
+
+      <div class="chat-body">
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-message chat-message--bot">
+            Bonjour, je suis Tom. Dis-moi ce que tu veux faire et on s’y met.
+          </div>
+        </div>
+
+        <form class="chat-input" id="chat-form">
+          <label for="chat-input-text" class="sr-only">Votre message</label>
+          <textarea id="chat-input-text" rows="1" placeholder="Écrire un message…" required></textarea>
+          <button type="submit" class="chat-send-btn" id="chat-send-btn">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    (function(){
+      async function inc(id, url){
+        const host = document.getElementById(id);
+        if (!host) return;
+        const r = await fetch(url, { cache: 'no-store' });
+        if (!r.ok) throw new Error(url + ' introuvable');
+        host.innerHTML = await r.text();
+      }
+
+      document.querySelector('.skip-link')?.addEventListener('click', () => {
+        const m = document.getElementById('contenu');
+        if (m) requestAnimationFrame(() => m.focus());
+      });
+
+      Promise.all([
+        inc('header-placeholder','assets/header.html'),
+        inc('footer-placeholder','assets/footer.html')
+      ]).then(() => {
+        ['assets/js/include.js','assets/js/tts.min.js'].forEach(src => {
+          if (!document.querySelector(`script[src="${src}"]`)) {
+            const s = document.createElement('script');
+            s.src = src;
+            s.defer = true;
+            document.body.appendChild(s);
+          }
+        });
+      }).catch(console.error);
+    })();
+  </script>
+
+  <script src="assets/js/chat.js" defer></script>
+
+  <!-- 🔒 SCRIPT ANTI-COPIE / ANTI-ASPI -->
+  <script>
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("selectstart", e => e.preventDefault());
+
+    document.addEventListener("copy", e => {
+      e.preventDefault();
+      console.warn("Tentative de copie bloquée.");
+    });
+    document.addEventListener("cut", e => e.preventDefault());
+    document.addEventListener("paste", e => e.preventDefault());
+
+    document.addEventListener("dragstart", e => e.preventDefault());
+    document.addEventListener("drop", e => e.preventDefault());
+
+    if (navigator.webdriver) document.body.innerHTML = "";
+
+    const ua = navigator.userAgent.toLowerCase();
+    const badUA = ["python","curl","wget","scrapy","bot","spider","crawl","httpclient"];
+    if (badUA.some(sig => ua.includes(sig))) document.body.innerHTML = "";
+
+    if (window.top !== window.self) document.body.innerHTML = "";
+  </script>
+
+</body>
+</html>
