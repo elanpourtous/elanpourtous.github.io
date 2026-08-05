@@ -5,16 +5,11 @@
 
   <!-- SEO : autoriser Google -->
   <meta name="robots" content="index, follow">
-
-  <!-- Anti-cache (optionnel, tu peux retirer plus tard) -->
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="-1">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Élan pour tous — Formations numériques accessibles, inclusion, accompagnement handicap, tests de compétences et outils adaptés à Saumur et en distanciel.">
 
   <title>Élan pour tous — Formations & Inclusion</title>
+  <link rel="canonical" href="https://elanpourtous.github.io/">
 
   <!-- Favicon -->
   <link rel="icon" href="assets/ima/logo.png" type="image/png">
@@ -35,7 +30,7 @@
   <!-- Open Graph (Facebook, LinkedIn) -->
   <meta property="og:title" content="Élan pour tous — Formations & Inclusion numérique à Saumur">
   <meta property="og:description" content="Accompagnement numérique accessible, tests de compétences, inclusion, ateliers et outils adaptés.">
-  <meta property="og:image" content="assets/ima/logo.png">
+  <meta property="og:image" content="https://elanpourtous.github.io/assets/ima/logo.png">
   <meta property="og:url" content="https://elanpourtous.github.io/">
   <meta property="og:type" content="website">
 
@@ -43,21 +38,15 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Élan pour tous — Inclusion & numérique">
   <meta name="twitter:description" content="Formations, tests de compétences, inclusion et outils adaptés.">
-  <meta name="twitter:image" content="assets/ima/logo.png">
+  <meta name="twitter:image" content="https://elanpourtous.github.io/assets/ima/logo.png">
 </head>
 
 <body>
-
-  <!-- Watermark invisible anti-plagiat -->
-  <p style="font-size:0;opacity:0;height:0;overflow:hidden;">
-    © Élan pour tous – Patrick Billy. Reproduction interdite sans autorisation.
-  </p>
-
   <!-- Lien d’évitement -->
   <a href="#contenu" class="skip-link">Aller au contenu</a>
 
   <!-- Header -->
-  <div id="header-placeholder" role="banner"></div>
+  <div id="header-placeholder"></div>
 
   <!-- CONTENU PRINCIPAL -->
   <main id="contenu" class="container hero" role="main" tabindex="-1">
@@ -88,13 +77,13 @@
 
     <section>
       <h2>Inclusion & accessibilité</h2>
-      <p>Site conforme RGAA 4.1 (niveau AA) — navigation clavier, contrastes, alternatives textuelles, TTS intégré.</p>
+      <p>Site conçu dans une démarche d’amélioration continue de l’accessibilité : navigation clavier, contrastes renforcés et lecture vocale intégrée.</p>
       <p><a href="rgaa.html" class="btn">Accessibilité du site</a></p>
     </section>
   </main>
 
   <!-- Footer -->
-  <div id="footer-placeholder" role="contentinfo"></div>
+  <div id="footer-placeholder"></div>
 
   <!-- Chatbot -->
   <div id="chat-placeholder"></div>
@@ -143,17 +132,6 @@
         if(window.initElanChat) window.initElanChat();
       });
     })();
-  </script>
-
-  <!-- Anti-copie -->
-  <script>
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("selectstart", e => e.preventDefault());
-    ["copy","cut","paste"].forEach(evt=>{
-      document.addEventListener(evt, e => e.preventDefault());
-    });
-    document.addEventListener("dragstart", e => e.preventDefault());
-    document.addEventListener("drop", e => e.preventDefault());
   </script>
 
 </body>
