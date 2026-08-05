@@ -471,3 +471,10 @@ main.container.hero > section, main.container.hero > article, main.container.her
   .hero h1 { font-size: clamp(2.45rem, 13vw, 3.7rem); }
   .trust-list { gap: .65rem 1.2rem; text-align: center; }
 }
+
+
+[data-theme="dark"] .inclusion-panel,
+[data-theme="dark"] .site-footer { background: #081713; }
+[data-theme="dark"] .nav-links .nav-cta { color: var(--brand); }
+[data-theme="dark"] .nav-links .nav-cta:hover,
+[data-theme="dark"] .nav-links .nav-cta:focus-visible { color: #071d1a; }
