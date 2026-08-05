@@ -2,14 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-
-  <!-- 🔒 ANTI-ASPI / ANTI-INDEXATION / ANTI-BOTS -->
-  <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex, noarchive">
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="-1">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Tests de compétences et accompagnement des entreprises — Élan pour tous aide à révéler le potentiel et favorise l’emploi inclusif.">
   <meta name="theme-color" content="#0b8457">
   <title>Élan pour tous — Tests &amp; accompagnement</title>
@@ -21,15 +16,9 @@
   <link rel="stylesheet" href="assets/css/chat.css">
 </head>
 <body>
-
-  <!-- 🔒 Watermark invisible anti-plagiat -->
-  <div style="font-size:0;opacity:0;height:0;overflow:hidden;">
-    Contenu protégé – Tests &amp; accompagnement © Élan pour tous / Patrick Billy 2025.
-  </div>
-
   <a href="#contenu" class="skip-link">Aller directement au contenu</a>
 
-  <div id="header-placeholder" role="banner" aria-label="En-tête"></div>
+  <div id="header-placeholder"></div>
 
   <main id="contenu" class="container hero" role="main" tabindex="-1" aria-labelledby="title">
     <h1 id="title">Tests de compétences &amp; accompagnement</h1>
@@ -159,7 +148,7 @@
 
   </main>
 
-  <div id="footer-placeholder" role="contentinfo" aria-label="Pied de page"></div>
+  <div id="footer-placeholder"></div>
 
   <!-- Placeholder pour le chatbot -->
   <div id="chat-placeholder"></div>
@@ -210,41 +199,6 @@
   </script>
 
   <script src="assets/js/form-orientation.js" defer></script>
-
-  <!-- 🔒 ANTI-COPIE / ANTI-ASPI -->
-  <script>
-    // Blocage clic droit
-    document.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Blocage sélection
-    document.addEventListener("selectstart", e => e.preventDefault());
-
-    // Blocage copier / couper / coller
-    ["copy", "cut", "paste"].forEach(evt =>
-      document.addEventListener(evt, e => e.preventDefault())
-    );
-
-    // Blocage drag & drop
-    document.addEventListener("dragstart", e => e.preventDefault());
-    document.addEventListener("drop", e => e.preventDefault());
-
-    // Anti-iframe
-    if (window.top !== window.self) {
-      document.body.innerHTML = "";
-    }
-
-    // Anti WebDriver (bots headless)
-    if (navigator.webdriver) {
-      document.body.innerHTML = "";
-    }
-
-    // UA suspects
-    const ua = navigator.userAgent.toLowerCase();
-    const badUA = ["curl", "wget", "httpclient", "python", "scrapy", "bot", "spider", "crawl"];
-    if (badUA.some(x => ua.includes(x))) {
-      document.body.innerHTML = "";
-    }
-  </script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 
   <!-- 🔒 ANTI-ASPI / ANTI-INDEXATION / ANTI-BOTS -->
-  <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex, noarchive">
+  <meta name="robots" content="index, follow">
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="-1">
@@ -22,15 +22,9 @@
 </head>
 
 <body>
-
-  <!-- 🔒 Watermark invisible anti-plagiat -->
-  <div style="font-size:0;opacity:0;height:0;overflow:hidden;">
-    Contenu protégé – Élan pour tous © Patrick Billy 2025.
-  </div>
-
   <a href="#contenu" class="skip-link">Aller directement au contenu</a>
 
-  <div id="header-placeholder" role="banner" aria-label="En-tête"></div>
+  <div id="header-placeholder"></div>
 
   <main id="contenu"
         class="container hero"
@@ -95,7 +89,7 @@
 
   </main>
 
-  <div id="footer-placeholder" role="contentinfo" aria-label="Pied de page"></div>
+  <div id="footer-placeholder"></div>
 
   <div id="chat-placeholder"></div>
 
@@ -144,41 +138,6 @@
       }).catch(console.error);
 
     })();
-  </script>
-
-  <!-- 🔒 ANTI-COPIE / ANTI-ASPI -->
-  <script>
-    // Blocage clic droit
-    document.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Blocage sélection
-    document.addEventListener("selectstart", e => e.preventDefault());
-
-    // Blocage copier / couper / coller
-    ["copy", "cut", "paste"].forEach(evt =>
-      document.addEventListener(evt, e => e.preventDefault())
-    );
-
-    // Blocage drag & drop
-    document.addEventListener("dragstart", e => e.preventDefault());
-    document.addEventListener("drop", e => e.preventDefault());
-
-    // Anti-iframe
-    if (window.top !== window.self) {
-      document.body.innerHTML = "";
-    }
-
-    // Anti WebDriver (bots headless)
-    if (navigator.webdriver) {
-      document.body.innerHTML = "";
-    }
-
-    // UA suspects
-    const ua = navigator.userAgent.toLowerCase();
-    const badUA = ["curl", "wget", "httpclient", "python", "scrapy", "bot", "spider", "crawl"];
-    if (badUA.some(x => ua.includes(x))) {
-      document.body.innerHTML = "";
-    }
   </script>
 
 </body>

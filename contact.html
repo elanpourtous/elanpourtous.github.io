@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 
   <!-- 🔒 ANTI-ASPI / ANTI-INDEXATION -->
-  <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex, noarchive">
+  <meta name="robots" content="index, follow">
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="-1">
@@ -22,14 +22,8 @@
   <link rel="stylesheet" href="assets/css/chat.css">
 </head>
 <body>
-
-  <!-- 🔒 Watermark invisible anti-plagiat -->
-  <p style="font-size:0; height:0; overflow:hidden; opacity:0;">
-    Élan pour tous © Patrick Billy — Ce contenu est protégé. Ne pas reproduire.
-  </p>
-
   <a href="#contenu" class="skip-link">Aller directement au contenu</a>
-  <div id="header-placeholder" role="banner" aria-label="En-tête"></div>
+  <div id="header-placeholder"></div>
 
   <main id="contenu" class="container hero" role="main" tabindex="-1" aria-labelledby="title">
     <h1 id="title">Contact</h1>
@@ -80,7 +74,7 @@
     </section>
   </main>
 
-  <div id="footer-placeholder" role="contentinfo" aria-label="Pied de page"></div>
+  <div id="footer-placeholder"></div>
 
   <!-- 💬 Widget de chat Tom Élan -->
   <div class="chat-widget" aria-live="polite">
@@ -218,44 +212,6 @@
 
   <!-- JS du chat Tom -->
   <script src="assets/js/chat.js" defer></script>
-
-  <!-- 🔒 SCRIPT ANTI-COPIE / ANTI-ASPI -->
-  <script>
-    // Désactivation du clic droit
-    document.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Désactivation de la sélection
-    document.addEventListener("selectstart", e => e.preventDefault());
-
-    // Copie / couper / coller bloqués (version accessible, sans alert)
-    document.addEventListener("copy", e => {
-      e.preventDefault();
-      console.warn("Tentative de copie bloquée.");
-    });
-    document.addEventListener("cut", e => e.preventDefault());
-    document.addEventListener("paste", e => e.preventDefault());
-
-    // Blocage drag & drop
-    document.addEventListener("dragstart", e => e.preventDefault());
-    document.addEventListener("drop", e => e.preventDefault());
-
-    // WebDriver (robots headless)
-    if (navigator.webdriver) {
-      document.body.innerHTML = "";
-    }
-
-    // User-agent suspects
-    const ua = navigator.userAgent.toLowerCase();
-    const badUA = ["python","curl","wget","scrapy","bot","spider","crawl","httpclient"];
-    if (badUA.some(sig => ua.includes(sig))) {
-      document.body.innerHTML = "";
-    }
-
-    // Anti-iframe (protection de l’intégrité du site)
-    if (window.top !== window.self) {
-      document.body.innerHTML = "";
-    }
-  </script>
 
 </body>
 </html>
