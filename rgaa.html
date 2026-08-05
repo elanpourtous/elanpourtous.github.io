@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 
   <!-- 🔒 Anti-indexation / anti-cache -->
-  <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex, noarchive">
+  <meta name="robots" content="index, follow">
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="-1">
@@ -22,14 +22,9 @@
   <link rel="stylesheet" href="assets/css/chat.css">
 </head>
 <body>
-  <!-- 🔒 Watermark invisible anti-plagiat -->
-  <p style="font-size:0;height:0;overflow:hidden;opacity:0;">
-    Page Accessibilité RGAA © Élan pour tous — Patrick Billy 2025. Contenu protégé.
-  </p>
-
   <a href="#contenu" class="skip-link">Aller directement au contenu</a>
 
-  <div id="header-placeholder" role="banner" aria-label="En-tête"></div>
+  <div id="header-placeholder"></div>
 
   <main id="contenu" class="container hero" role="main" tabindex="-1" aria-labelledby="title">
     <h1 id="title">Accessibilité RGAA</h1>
@@ -62,7 +57,7 @@
     </section>
   </main>
 
-  <div id="footer-placeholder" role="contentinfo" aria-label="Pied de page"></div>
+  <div id="footer-placeholder"></div>
 
   <!-- Placeholder pour le chatbot -->
   <div id="chat-placeholder"></div>
@@ -117,39 +112,5 @@
     })();
   </script>
 
-  <!-- 🔒 Anti-copie / anti-aspi -->
-  <script>
-    // Clic droit
-    document.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Sélection
-    document.addEventListener("selectstart", e => e.preventDefault());
-
-    // Copier / couper / coller
-    ["copy","cut","paste"].forEach(evt => {
-      document.addEventListener(evt, e => e.preventDefault());
-    });
-
-    // Drag & drop
-    document.addEventListener("dragstart", e => e.preventDefault());
-    document.addEventListener("drop", e => e.preventDefault());
-
-    // Anti-iframe
-    if (window.top !== window.self) {
-      document.body.innerHTML = "";
-    }
-
-    // Anti WebDriver
-    if (navigator.webdriver) {
-      document.body.innerHTML = "";
-    }
-
-    // User-agents suspects
-    const ua = navigator.userAgent.toLowerCase();
-    const badUA = ["curl","wget","httpclient","python","scrapy","bot","spider","crawl"];
-    if (badUA.some(x => ua.includes(x))) {
-      document.body.innerHTML = "";
-    }
-  </script>
 </body>
 </html>
