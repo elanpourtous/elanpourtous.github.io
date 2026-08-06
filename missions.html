@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mission Bot 86 : repérer les opportunités de formation IA inclusive, RGAA, accessibilité et inclusion numérique à Poitiers et dans la Vienne.">
+  <meta name="theme-color" content="#071d1a">
+  <title>Mission Bot 86 — IA inclusive & RGAA | Élan pour tous</title>
+  <link rel="canonical" href="https://elanpourtous.github.io/missions.html">
+  <link rel="icon" href="assets/ima/logo.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rgaa-accessible.css">
+  <link rel="stylesheet" href="assets/css/tts.min.css">
+  <link rel="stylesheet" href="assets/css/chat.css">
+</head>
+<body>
+  <a href="#contenu" class="skip-link">Aller directement au contenu</a>
+  <div id="header-placeholder"></div>
+
+  <main id="contenu" class="container hero" tabindex="-1" aria-labelledby="title">
+    <p class="eyebrow">Veille locale · Vienne 86 · Poitiers</p>
+    <h1 id="title">Mission Bot 86</h1>
+    <p class="lead">Trouvez rapidement les bons portails et les bons angles de prospection pour des missions en IA inclusive, RGAA, formation et inclusion numérique.</p>
+
+    <section class="mission-bot" aria-labelledby="bot-title">
+      <h2 id="bot-title">Que recherchez-vous ?</h2>
+      <form id="mission-form" class="mission-form">
+        <div>
+          <label for="mission-theme">Votre spécialité</label>
+          <select id="mission-theme" name="theme">
+            <option value="all">Toutes mes spécialités</option>
+            <option value="ia">IA inclusive</option>
+            <option value="rgaa">RGAA & accessibilité numérique</option>
+            <option value="formation">Formation & FPA</option>
+            <option value="inclusion">Inclusion numérique</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="mission-target">Type de donneur d’ordre</label>
+          <select id="mission-target" name="target">
+            <option value="all">Tous</option>
+            <option value="public">Collectivités & secteur public</option>
+            <option value="training">Centres de formation & CFA</option>
+            <option value="business">Entreprises</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Trouver mes pistes</button>
+      </form>
+
+      <div id="mission-status" class="mission-status" role="status" aria-live="polite"></div>
+
+      <div class="mission-query" id="mission-query" hidden>
+        <label for="mission-query-text">Mots-clés conseillés</label>
+        <input id="mission-query-text" type="text" readonly>
+      </div>
+
+      <div id="mission-results" class="mission-results"></div>
+    </section>
+
+    <aside class="info-note" role="note">
+      <h2>Comment fonctionne le bot ?</h2>
+      <p>Il classe des portails publics et professionnels utiles pour la Vienne selon votre recherche. Les annonces et dates limites restent à vérifier sur le site source au moment de candidater.</p>
+    </aside>
+
+    <section aria-labelledby="offre-title">
+      <h2 id="offre-title">Votre angle différenciant</h2>
+      <p>Votre positionnement combine trois sujets rarement réunis : intelligence artificielle, accessibilité RGAA et pédagogie inclusive. Pour les collectivités et centres de formation, présentez une offre courte centrée sur les usages concrets, l’accessibilité et le contrôle humain.</p>
+      <p><a href="formation-ia-inclusive.html" class="btn btn-primary">Voir l’offre IA inclusive</a></p>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <div id="chat-placeholder"></div>
+
+  <script src="assets/js/missions.js" defer></script>
+  <script>
+    (function(){
+      async function include(id, url){
+        const host = document.getElementById(id);
+        if (!host) return;
+        const response = await fetch(url, {cache: "no-store"});
+        if (!response.ok) throw new Error(url + " introuvable");
+        host.innerHTML = await response.text();
+      }
+
+      document.querySelector(".skip-link")?.addEventListener("click", () => {
+        const main = document.getElementById("contenu");
+        if (main) requestAnimationFrame(() => main.focus());
+      });
+
+      Promise.all([
+        include("header-placeholder", "assets/header.html"),
+        include("footer-placeholder", "assets/footer.html")
+      ]).then(async () => {
+        ["assets/js/include.js", "assets/js/tts.min.js"].forEach(src => {
+          if (!document.querySelector(`script[src="${src}"]`)) {
+            const script = document.createElement("script");
+            script.src = src;
+            script.defer = true;
+            document.body.appendChild(script);
+          }
+        });
+        await include("chat-placeholder", "assets/chat.html");
+        if (!document.querySelector('script[src="assets/js/chat.js"]')) {
+          const script = document.createElement("script");
+          script.src = "assets/js/chat.js";
+          script.defer = true;
+          document.body.appendChild(script);
+        }
+        window.initElanChat?.();
+      }).catch(console.error);
+    })();
+  </script>
+</body>
+</html>
